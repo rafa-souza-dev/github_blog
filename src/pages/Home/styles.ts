@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const HomeContainer = styled.main`
   max-width: 54rem;
   margin: 0 auto;
-  padding: 0 1rem;
+  padding: 1rem;
 `
 
 export const HomeContent = styled.main`
@@ -142,4 +142,70 @@ export const SearchFormInput = styled.input`
   &:focus {
     border: 1px solid ${(props) => props.theme.blue};
   }
+`
+
+export const PostList = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+
+  @media (max-width: 702px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+  }
+`
+
+export const PostCardContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  max-width: 26rem;
+  height: 16.25rem;
+  padding: 2rem;
+  background-color: ${(props) => props.theme['base-post']};
+  border-radius: 10px;
+  border: 1px solid ${(props) => props.theme['base-post']};
+
+  &:hover {
+    border: 1px solid ${(props) => props.theme['base-label']};
+    cursor: pointer;
+  }
+`
+
+export const PostCardHeader = styled.header`
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+
+  strong {
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 160%;
+    color: ${(props) => props.theme['base-title']};
+  }
+
+  span {
+    flex-shrink: 0;
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 160%;
+    color: ${(props) => props.theme['base-span']};
+  }
+`
+
+export const PostCardText = styled.p`
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 160%;
+  text-align: justify;
+  color: ${(props) => props.theme['base-text']};
 `
