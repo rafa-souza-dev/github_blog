@@ -7,6 +7,9 @@ import {
   ProfileInfoContainer,
   ProfileInfoFooter,
   ProfileInfoHeader,
+  SearchForm,
+  SearchFormHeader,
+  SearchFormInput,
 } from './styles'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -60,6 +63,13 @@ export function Home() {
             </ProfileInfoContainer>
           </ProfileCardContent>
         </ProfileCardContainer>
+        <SearchForm>
+          <SearchFormHeader>
+            <strong>Publicações</strong>
+            <span>6 publicações</span>
+          </SearchFormHeader>
+          <SearchFormInput placeholder="Buscar Conteúdo" />
+        </SearchForm>
       </HomeContent>
     </HomeContainer>
   )

@@ -63,6 +63,10 @@ export const ProfileInfoHeader = styled.header`
     text-decoration: none;
     color: ${(props) => props.theme.blue};
   }
+
+  a:hover {
+    text-decoration: underline;
+  }
 `
 
 export const ProfileInfoBio = styled.p`
@@ -82,4 +86,60 @@ export const ProfileInfoFooter = styled.footer`
   display: flex;
   align-items: center;
   gap: 1.5rem;
+`
+
+export const SearchForm = styled.form`
+  margin-top: 4.5rem;
+  margin-bottom: 3rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+`
+
+export const SearchFormHeader = styled.header`
+  display: flex;
+  justify-content: space-between;
+
+  strong {
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 160%;
+    color: ${(props) => props.theme['base-subtitle']};
+  }
+
+  span {
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 160%;
+    color: ${(props) => props.theme['base-span']};
+  }
+`
+
+export const SearchFormInput = styled.input`
+  width: 100%;
+  height: 3.125rem;
+  background-color: ${(props) => props.theme['base-input']};
+  border: 1px solid ${(props) => props.theme['base-border']};
+  border-radius: 6px;
+  padding: 0.75rem 1rem;
+
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 160%;
+  color: ${(props) => props.theme['base-text']};
+
+  &::placeholder {
+    color: ${(props) => props.theme['base-label']};
+  }
+
+  &:focus {
+    border: 1px solid ${(props) => props.theme.blue};
+  }
 `
