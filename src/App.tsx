@@ -1,4 +1,5 @@
 import { ThemeProvider } from 'styled-components'
+import { Router } from './routes/routes'
 import { GlobalStyle } from './styles/global'
 import { defaultTheme } from './styles/themes/default'
 
@@ -7,7 +8,7 @@ function App() {
     <ThemeProvider theme={defaultTheme}>
       <GlobalStyle />
 
-      <h1>Olá</h1>
+      <Router />
     </ThemeProvider>
   )
 }
