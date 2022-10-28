@@ -25,41 +25,76 @@ import {
 import { IconInfo } from '../../components/IconInfo'
 
 import github from '../../assets/github.svg'
+import { useEffect, useState } from 'react'
+import { client } from '../../client/client'
+
+interface UserData {
+  name: string
+  login: string
+  company: string
+  followers: number
+  avatar_url: string
+  bio: string
+}
 
 export function Home() {
+  const [userData, setUserData] = useState<UserData | null>(null)
+
+  async function fetchUserData() {
+    await client
+      .get('users/rafa-souza-dev')
+      .then((res) => {
+        const data = res.data
+        setUserData({
+          name: data.name,
+          login: data.login,
+          followers: data.followers,
+          company: data.company,
+          bio: data.bio,
+          avatar_url: data.avatar_url,
+        })
+      })
+      .catch((err) => alert(err))
+  }
+
+  useEffect(() => {
+    fetchUserData()
+  }, [])
+
   return (
     <HomeContainer>
       <HomeContent>
         <ProfileCardContainer>
           <ProfileCardContent>
-            <img
-              src="https://github.com/rafa-souza-dev.png"
-              alt="Imagem do Dono do Blog"
-            />
+            <img src={userData?.avatar_url} alt="Imagem do Dono do Blog" />
             <ProfileInfoContainer>
               <ProfileInfoHeader>
-                <strong>Rafael Souza</strong>
-                <a href="">
+                <strong>{userData?.name}</strong>
+                <a
+                  target={'_blank'}
+                  href={`https://github.com/${userData?.login}`}
+                  rel="noreferrer"
+                >
                   <p>Github</p>
                   <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
                 </a>
               </ProfileInfoHeader>
-              <ProfileInfoBio>
-                Tristique volutpat pulvinar vel massa, pellentesque egestas. Eu
-                viverra massa quam dignissim aenean malesuada suscipit. Nunc,
-                volutpat pulvinar vel mass.
-              </ProfileInfoBio>
+              <ProfileInfoBio>{userData?.bio}</ProfileInfoBio>
               <ProfileInfoFooter>
-                <IconInfo type="svg" text="rafa-souza-dev" imagePath={github} />
+                <IconInfo
+                  type="svg"
+                  text={userData?.login!}
+                  imagePath={github}
+                />
                 <IconInfo
                   type="fortAwesome"
-                  text="Flipon"
+                  text={userData?.company!}
                   icon={faBuilding}
                   colorImage="#3A536B"
                 />
                 <IconInfo
                   type="fortAwesome"
-                  text="32 seguidores"
+                  text={`${userData?.followers} seguidores`}
                   icon={faUserGroup}
                   colorImage="#3A536B"
                 />
