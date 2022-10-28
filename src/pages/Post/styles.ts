@@ -9,6 +9,7 @@ export const PostContainer = styled.main`
 export const PostContent = styled.div`
   display: flex;
   flex-direction: column;
+  gap: 2.5rem;
 `
 
 export const PostBannerContainer = styled.div`
@@ -63,4 +64,8 @@ export const PostBannerFooter = styled.footer`
   display: flex;
   align-items: center;
   gap: 2rem;
+`
+
+export const PostText = styled.div`
+  padding: 0 2rem;
 `

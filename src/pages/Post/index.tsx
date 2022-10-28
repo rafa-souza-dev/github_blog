@@ -1,3 +1,4 @@
+/* eslint-disable react/no-children-prop */
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   PostBannerContainer,
@@ -7,6 +8,7 @@ import {
   PostBannerTitle,
   PostContainer,
   PostContent,
+  PostText,
 } from './styles'
 
 import {
@@ -19,7 +21,11 @@ import goback from '../../assets/goback.svg'
 import github from '../../assets/github.svg'
 import { IconInfo } from '../../components/IconInfo'
 
+import ReactMarkdown from 'react-markdown'
+
 export function Post() {
+  const markdown = `**Olá**`
+
   return (
     <PostContainer>
       <PostContent>
@@ -55,6 +61,9 @@ export function Post() {
             </PostBannerFooter>
           </PostBannerContent>
         </PostBannerContainer>
+        <PostText>
+          <ReactMarkdown children={markdown} />
+        </PostText>
       </PostContent>
     </PostContainer>
   )
