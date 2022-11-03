@@ -15,7 +15,7 @@ export const ProfileCardContainer = styled.div`
   height: 13.25rem;
   background-color: ${(props) => props.theme['base-profile']};
   border-radius: 10px;
-  margin-top: -5.3125rem;
+  margin-top: -6.5rem;
   padding: 2rem 2.5rem;
 `
 
