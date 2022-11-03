@@ -136,7 +136,9 @@ export function Home() {
         <SearchForm>
           <SearchFormHeader>
             <strong>Publicações</strong>
-            <span>6 publicações</span>
+            {
+              issues && <span>{issues.length} publicações</span>
+            }
           </SearchFormHeader>
           <SearchFormInput placeholder="Buscar Conteúdo" />
         </SearchForm>
