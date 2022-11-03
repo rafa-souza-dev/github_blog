@@ -173,6 +173,10 @@ export const PostCardContainer = styled.div`
     border: 1px solid ${(props) => props.theme['base-label']};
     cursor: pointer;
   }
+
+  @media (max-width: 702px) {
+    width: 100%;
+  }
 `
 
 export const PostCardHeader = styled.header`
