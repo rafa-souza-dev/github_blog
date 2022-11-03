@@ -37,14 +37,22 @@ interface UserData {
   bio: string
 }
 
+interface IssueData {
+  id: number
+  title: string
+  body: string
+  created_at: string
+}
+
 export function Home() {
   const [userData, setUserData] = useState<UserData | null>(null)
+  const [issues, setIssues] = useState<IssueData[]>([])
 
   async function fetchUserData() {
     await client
       .get('users/rafa-souza-dev')
       .then((res) => {
-        const data = res.data
+        const data: UserData = res.data
         setUserData({
           name: data.name,
           login: data.login,
@@ -57,9 +65,32 @@ export function Home() {
       .catch((err) => alert(err))
   }
 
+  async function fetchIssues() {
+    await client
+    .get('search/issues?q=repo:rafa-souza-dev/test_blog')
+    .then(res => {
+      const data = res.data
+      let items: IssueData[] = data.items
+      let issuesAux: IssueData[] = []
+
+      items.map(issue => issuesAux.push({
+        id: issue.id,
+        title: issue.title,
+        body: issue.body,
+        created_at: issue.created_at
+      }))
+
+      setIssues(issuesAux)
+    })
+    .catch(err => alert(err))
+  }
+
   useEffect(() => {
     fetchUserData()
+    fetchIssues()
   }, [])
+
+  console.log(issues)
 
   return (
     <HomeContainer>
