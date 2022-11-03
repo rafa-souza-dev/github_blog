@@ -27,6 +27,8 @@ import { IconInfo } from '../../components/IconInfo'
 import github from '../../assets/github.svg'
 import { useEffect, useState } from 'react'
 import { client } from '../../client/client'
+import { getDistanceOfDateToNow } from '../../utils/formatDate'
+import { reduceText } from '../../utils/formatString'
 
 interface UserData {
   name: string
@@ -90,8 +92,6 @@ export function Home() {
     fetchIssues()
   }, [])
 
-  console.log(issues)
-
   return (
     <HomeContainer>
       <HomeContent>
@@ -141,17 +141,19 @@ export function Home() {
           <SearchFormInput placeholder="Buscar Conteúdo" />
         </SearchForm>
         <PostList>
-          <PostCardContainer>
-            <PostCardHeader>
-              <strong>JavaScript data types and data structures</strong>
-              <span>Há 1 dia</span>
-            </PostCardHeader>
-            <PostCardText>
-              Programming languages all have built-in data structures, but these
-              often differ from one language to another. This article attempts
-              to list the built-in...
-            </PostCardText>
-          </PostCardContainer>
+          {
+            issues?.map(issue => (
+              <PostCardContainer key={issue.id}>
+                <PostCardHeader>
+                  <strong>{issue.title}</strong>
+                  <span>{getDistanceOfDateToNow(new Date(issue.created_at))}</span>
+                </PostCardHeader>
+                <PostCardText>
+                  {reduceText(issue.body)}
+                </PostCardText>
+              </PostCardContainer>
+            ))
+          }
         </PostList>
       </HomeContent>
     </HomeContainer>
