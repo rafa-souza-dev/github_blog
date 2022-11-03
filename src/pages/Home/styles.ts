@@ -178,7 +178,7 @@ export const PostCardContainer = styled.div`
 export const PostCardHeader = styled.header`
   display: flex;
   align-items: baseline;
-  gap: 1rem;
+  justify-content: space-between;
 
   strong {
     font-family: 'Nunito';
