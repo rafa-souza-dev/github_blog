@@ -22,8 +22,21 @@ import github from '../../assets/github.svg'
 import { IconInfo } from '../../components/IconInfo'
 
 import ReactMarkdown from 'react-markdown'
+import { NavLink, useNavigate, useParams } from 'react-router-dom'
+import { useEffect } from 'react'
 
 export function Post() {
+  const { id } = useParams()
+  const navigate = useNavigate()
+
+  function redirectHome() {
+    navigate('/')
+  }
+
+  // useEffect(() => {
+  //   if (id === undefined) redirectHome()
+  // }, [])
+
   const markdown = `**Olá**`
 
   return (
@@ -32,10 +45,10 @@ export function Post() {
         <PostBannerContainer>
           <PostBannerContent>
             <PostBannerHeader>
-              <a href="">
+              <NavLink to={'/'}>
                 <img src={goback} alt="" />
                 VOLTAR
-              </a>
+              </NavLink>
               <a href="">
                 VER NO GITHUB
                 <FontAwesomeIcon icon={faArrowUpRightFromSquare} />

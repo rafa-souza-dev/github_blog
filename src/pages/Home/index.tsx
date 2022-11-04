@@ -29,6 +29,7 @@ import { FormEvent, useEffect, useState } from 'react'
 import { client } from '../../client/client'
 import { getDistanceOfDateToNow } from '../../utils/formatDate'
 import { reduceText } from '../../utils/formatString'
+import { NavLink } from 'react-router-dom'
 
 interface UserData {
   name: string
@@ -162,15 +163,17 @@ export function Home() {
         <PostList>
           {
             filteredIssues?.map(issue => (
-              <PostCardContainer key={issue.id}>
-                <PostCardHeader>
-                  <strong>{issue.title}</strong>
-                  <span>{getDistanceOfDateToNow(new Date(issue.created_at))}</span>
-                </PostCardHeader>
-                <PostCardText>
-                  {reduceText(issue.body)}
-                </PostCardText>
-              </PostCardContainer>
+              <NavLink to={`/post/${issue.id}`} key={issue.id}>
+                <PostCardContainer>
+                  <PostCardHeader>
+                    <strong>{issue.title}</strong>
+                    <span>{getDistanceOfDateToNow(new Date(issue.created_at))}</span>
+                  </PostCardHeader>
+                  <PostCardText>
+                    {reduceText(issue.body)}
+                  </PostCardText>
+                </PostCardContainer>
+              </NavLink>
             ))
           }
         </PostList>

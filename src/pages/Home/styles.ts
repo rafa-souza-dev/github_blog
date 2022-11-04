@@ -149,6 +149,10 @@ export const PostList = styled.div`
   grid-template-columns: 1fr 1fr;
   gap: 2rem;
 
+  a {
+    text-decoration: none;
+  }
+
   @media (max-width: 702px) {
     display: flex;
     flex-direction: column;
@@ -183,6 +187,7 @@ export const PostCardHeader = styled.header`
   display: flex;
   align-items: baseline;
   justify-content: space-between;
+  gap: 1rem;
 
   strong {
     font-family: 'Nunito';
