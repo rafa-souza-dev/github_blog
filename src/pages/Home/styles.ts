@@ -50,6 +50,10 @@ export const ProfileInfoHeader = styled.header`
     color: ${(props) => props.theme['base-title']};
   }
 
+  p {
+    color: ${(props) => props.theme.blue};
+  }
+
   a {
     display: flex;
     align-items: center;
