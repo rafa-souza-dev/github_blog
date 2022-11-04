@@ -109,7 +109,7 @@ export function Post() {
           </PostBannerContent>
         </PostBannerContainer>
         <PostText>
-          <ReactMarkdown children={markdown} />
+          <ReactMarkdown>{postData.body}</ReactMarkdown>
         </PostText>
       </PostContent>
     </PostContainer>
