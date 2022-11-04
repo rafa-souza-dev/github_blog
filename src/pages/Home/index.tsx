@@ -49,6 +49,7 @@ interface IssueData {
 export function Home() {
   const [userData, setUserData] = useState<UserData | null>(null)
   const [issues, setIssues] = useState<IssueData[]>([])
+  const [value, setValue] = useState('')
 
   async function fetchUserData() {
     await client
@@ -91,6 +92,16 @@ export function Home() {
     fetchUserData()
     fetchIssues()
   }, [])
+
+  const filteredIssues = !!issues.length
+    ? issues.filter(issue => (
+      issue.title.toUpperCase().includes(value.toUpperCase())
+      ||
+      issue.body.toUpperCase().includes(value.toUpperCase())
+    ))
+    : []; 
+
+  console.log(filteredIssues)
 
   return (
     <HomeContainer>
@@ -137,14 +148,18 @@ export function Home() {
           <SearchFormHeader>
             <strong>Publicações</strong>
             {
-              issues && <span>{issues.length} publicações</span>
+              issues && <span>{filteredIssues.length} publicações</span>
             }
           </SearchFormHeader>
-          <SearchFormInput placeholder="Buscar Conteúdo" />
+          <SearchFormInput 
+            placeholder="Buscar Conteúdo"
+            value={value}
+            onChange={(e) => setValue(e.target.value)}
+          />
         </SearchForm>
         <PostList>
           {
-            issues?.map(issue => (
+            filteredIssues?.map(issue => (
               <PostCardContainer key={issue.id}>
                 <PostCardHeader>
                   <strong>{issue.title}</strong>
