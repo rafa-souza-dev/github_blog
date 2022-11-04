@@ -25,7 +25,7 @@ import {
 import { IconInfo } from '../../components/IconInfo'
 
 import github from '../../assets/github.svg'
-import { useEffect, useState } from 'react'
+import { FormEvent, useEffect, useState } from 'react'
 import { client } from '../../client/client'
 import { getDistanceOfDateToNow } from '../../utils/formatDate'
 import { reduceText } from '../../utils/formatString'
@@ -93,15 +93,17 @@ export function Home() {
     fetchIssues()
   }, [])
 
+  function handleSubmitForm(event: FormEvent) {
+    event.preventDefault()
+  }
+
   const filteredIssues = !!issues.length
     ? issues.filter(issue => (
       issue.title.toUpperCase().includes(value.toUpperCase())
       ||
       issue.body.toUpperCase().includes(value.toUpperCase())
     ))
-    : []; 
-
-  console.log(filteredIssues)
+    : [];
 
   return (
     <HomeContainer>
@@ -144,7 +146,7 @@ export function Home() {
             </ProfileInfoContainer>
           </ProfileCardContent>
         </ProfileCardContainer>
-        <SearchForm>
+        <SearchForm onSubmit={handleSubmitForm}>
           <SearchFormHeader>
             <strong>Publicações</strong>
             {
