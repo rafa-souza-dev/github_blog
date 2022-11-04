@@ -45,6 +45,7 @@ interface IssueData {
   title: string
   body: string
   created_at: string
+  number: number
 }
 
 export function Home() {
@@ -81,7 +82,8 @@ export function Home() {
         id: issue.id,
         title: issue.title,
         body: issue.body,
-        created_at: issue.created_at
+        created_at: issue.created_at,
+        number: issue.number
       }))
 
       setIssues(issuesAux)
@@ -163,7 +165,7 @@ export function Home() {
         <PostList>
           {
             filteredIssues?.map(issue => (
-              <NavLink to={`/post/${issue.id}`} key={issue.id}>
+              <NavLink to={`/post/${issue.number}`} key={issue.id}>
                 <PostCardContainer>
                   <PostCardHeader>
                     <strong>{issue.title}</strong>
